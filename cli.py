@@ -155,12 +155,12 @@ class load(LoadCommand):
 
         # search for last frame
         toplevel = max(int(x)
-            for x in os.listdir(args.location))
+            for x in os.listdir(args.location) if not x.startswith('.'))
         secondlevel = max(int(x)
-            for x in os.listdir("{0}/{1}".format(args.location, toplevel)))
+            for x in os.listdir("{0}/{1}".format(args.location, toplevel)) if not x.startswith('.'))
         maxframes = max(int(os.path.splitext(x)[0])
             for x in os.listdir("{0}/{1}/{2}"
-            .format(args.location, toplevel, secondlevel))) + 1
+            .format(args.location, toplevel, secondlevel)) if not x.startswith('.')) + 1
 
         print "Found {0} frames.".format(maxframes)
 
